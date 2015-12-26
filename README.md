@@ -6,7 +6,7 @@ It is useful for prameter configuration with GUI
 
 # Install
 
-> pip install SimpleTkGUIKit
+> sudo pip install SimpleTkGUIKit
 
 # Usage
 
