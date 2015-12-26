@@ -97,6 +97,9 @@ You can set number in the entry,
     
 but them you have to convert the number string to int or float.
 
+## PyPI site
+
+[SimpleTkGUIKit](https://pypi.python.org/pypi/SimpleTkGUIKit/)
 
 ## Licence
 
