@@ -1,5 +1,4 @@
 SimpleTkGUIKit
-
 ===============
 Simple GUI kit with Python tkinter
 
@@ -8,6 +7,12 @@ Simple GUI kit with Python tkinter
 # Usage
 
 ## GetFilePathsWithDialog
+
+  You can get file full-paths with file dialog.
+
+  Sample code:
+
+
     fileList=SimpleTkGUIKit.GetFilePathsWithDialog()
     print fileList
 
