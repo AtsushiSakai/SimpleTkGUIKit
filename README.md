@@ -12,7 +12,7 @@ It is useful for prameter configuration with GUI
 
 All APIs can be aviable to just import it:
 
-> from SimpleTkGUIKit import SimpleTkGUIKit 
+    from SimpleTkGUIKit import SimpleTkGUIKit 
 
 ## GetFilePathsWithDialog
 
