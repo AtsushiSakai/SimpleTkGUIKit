@@ -2,7 +2,7 @@ SimpleTkGUIKit
 ===============
 This is a simple GUI kit with Python tkinter
 
-It is useful for prameter configuration with GUI
+It is useful for parameter configuration with GUI
 
 # Install
 
