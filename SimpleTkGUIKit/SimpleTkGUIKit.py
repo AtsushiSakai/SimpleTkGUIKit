@@ -9,165 +9,162 @@ import tkinter
 from tkinter import filedialog
 
 
-class SimpleTkGUIKit:
+def GetFilePathsWithDialog(fileTypes=[]):
+    """
+        Multipul File Select with dialog
 
-    @classmethod
-    def GetFilePathsWithDialog(self, fileTypes=[]):
-        """
-            Multipul File Select with dialog
+        fileTypes: you can choise file extension
+            ex) fileTypes=[('Excel Files', '.xlsx')]
+    """
+    root = tkinter.Tk()
+    root.withdraw()
+    filepath = filedialog.askopenfilenames(
+        filetypes=fileTypes, parent=root)
 
-            fileTypes: you can choise file extension
-                ex) fileTypes=[('Excel Files', '.xlsx')]
-        """
-        root = tkinter.Tk()
-        root.withdraw()
-        filepath = filedialog.askopenfilenames(
-            filetypes=fileTypes, parent=root)
+    if isinstance(filepath, str):
+        fileList = filepath.split(" ")
+    elif isinstance(filepath, tuple):
+        fileList = list(filepath)
+    elif isinstance(filepath, list):
+        fileList = filepath
 
-        if isinstance(filepath, str):
-            fileList = filepath.split(" ")
-        elif isinstance(filepath, tuple):
-            fileList = list(filepath)
-        elif isinstance(filepath, list):
-            fileList = filepath
+    root.destroy()
+    print(str(len(fileList)) + " files are selected")
 
-        root.destroy()
-        print(str(len(fileList)) + " files are selected")
+    return fileList
 
-        return fileList
 
-    @classmethod
-    def GetRadioButtonSelect(self, selectList, title="Select", msg=""):
-        """
-        Create radio button window for option selection
+def GetRadioButtonSelect(selectList, title="Select", msg=""):
+    """
+    Create radio button window for option selection
 
-        title: Window name
-        mag: Label of the radio button
+    title: Window name
+    mag: Label of the radio button
 
-        return (seldctedItem, selectedindex)
-        """
-        root = tkinter.Tk()
-        root.title(title)
-        self.val = tkinter.IntVar()
-        self.val.set(0)
+    return (seldctedItem, selectedindex)
+    """
+    root = tkinter.Tk()
+    root.title(title)
+    val = tkinter.IntVar()
+    val.set(0)
 
-        if msg != "":
-            tkinter.Label(root, text=msg).pack()
+    if msg != "":
+        tkinter.Label(root, text=msg).pack()
 
-        index = 0
-        for item in selectList:
-            tkinter.Radiobutton(root, text=item, variable=self.val,
-                                value=index).pack(anchor=tkinter.W)
-            index += 1
+    index = 0
+    for item in selectList:
+        tkinter.Radiobutton(root, text=item, variable=val,
+                            value=index).pack(anchor=tkinter.W)
+        index += 1
 
-        tkinter.Button(root, text="OK", fg="black", command=root.quit).pack()
-        root.mainloop()
-        root.destroy()
+    tkinter.Button(root, text="OK", fg="black", command=root.quit).pack()
+    root.mainloop()
+    root.destroy()
 
-        print(selectList[self.val.get()] + " is selected")
-        return (selectList[self.val.get()], self.val.get())
+    print(selectList[val.get()] + " is selected")
+    return (selectList[val.get()], val.get())
 
-    @classmethod
-    def GetListSelect(self, selectList, title="Select", msg=""):
-        """
-        Create list with selectList,
-        and then return seleced string and index
 
-        title: Window name
-        mag: Label of the list
+def GetListSelect(selectList, title="Select", msg=""):
+    """
+    Create list with selectList,
+    and then return seleced string and index
 
-        return (seldctedItem, selectedindex)
+    title: Window name
+    mag: Label of the list
 
-        """
-        root = tkinter.Tk()
-        root.title(title)
+    return (seldctedItem, selectedindex)
 
-        label = tkinter.Label(root, text=msg)
-        label.pack()
+    """
+    root = tkinter.Tk()
+    root.title(title)
 
-        listbox = tkinter.Listbox(root)
-        for i in selectList:
-            listbox.insert(tkinter.END, i)
-        listbox.pack()
+    label = tkinter.Label(root, text=msg)
+    label.pack()
 
-        tkinter.Button(root, text="OK", fg="black", command=root.quit).pack()
-        root.mainloop()
+    listbox = tkinter.Listbox(root)
+    for i in selectList:
+        listbox.insert(tkinter.END, i)
+    listbox.pack()
 
-        selected = listbox.get(listbox.curselection())
-        print(selected + " is selected")
-        root.destroy()
-        return (selected, selectList.index(selected))
+    tkinter.Button(root, text="OK", fg="black", command=root.quit).pack()
+    root.mainloop()
 
-    @classmethod
-    def GetCheckButtonSelect(self, selectList, title="Select", msg=""):
-        """
-        Get selected check button options
+    selected = listbox.get(listbox.curselection())
+    print(selected + " is selected")
+    root.destroy()
+    return (selected, selectList.index(selected))
 
-        title: Window name
-        mag: Label of the check button
 
-        return selected dictionary
-            {'sample b': False, 'sample c': False, 'sample a': False}
-        """
-        root = tkinter.Tk()
-        root.title(title)
+def GetCheckButtonSelect(selectList, title="Select", msg=""):
+    """
+    Get selected check button options
 
-        label = tkinter.Label(root, text=msg)
-        label.pack()
+    title: Window name
+    mag: Label of the check button
 
-        optList = []
-        for item in selectList:
-            opt = tkinter.BooleanVar()
-            opt.set(False)
-            tkinter.Checkbutton(root, text=item, variable=opt).pack()
-            optList.append(opt)
+    return selected dictionary
+        {'sample b': False, 'sample c': False, 'sample a': False}
+    """
+    root = tkinter.Tk()
+    root.title(title)
 
-        tkinter.Button(root, text="OK", fg="black", command=root.quit).pack()
-        root.mainloop()
-        root.destroy()
+    label = tkinter.Label(root, text=msg)
+    label.pack()
 
-        result = {}
-        for (opt, select) in zip(optList, selectList):
-            result[select] = opt.get()
+    optList = []
+    for item in selectList:
+        opt = tkinter.BooleanVar()
+        opt.set(False)
+        tkinter.Checkbutton(root, text=item, variable=opt).pack()
+        optList.append(opt)
 
-        print(result)
-        return result
+    tkinter.Button(root, text="OK", fg="black", command=root.quit).pack()
+    root.mainloop()
+    root.destroy()
 
-    @classmethod
-    def GetEntries(self, dataList, title="Select", msg=""):
-        """
-        Get entries of the list
+    result = {}
+    for (opt, select) in zip(optList, selectList):
+        result[select] = opt.get()
 
-        title: Window name
-        mag: Label of the check button
+    print(result)
+    return result
 
-        return data dictionary like:
-        {'y': '5.0', 'x': '100', 'z': 'save'}
-        """
-        root = tkinter.Tk()
-        root.title(title)
 
-        label = tkinter.Label(root, text=msg)
-        label.pack()
+def GetEntries(dataList, title="Select", msg=""):
+    """
+    Get entries of the list
 
-        entries = []
-        for item in dataList:
-            tkinter.Label(root, text=item).pack()
-            entry = tkinter.Entry(root)
-            entry.pack()
-            entries.append(entry)
+    title: Window name
+    mag: Label of the check button
 
-        # print entries
-        tkinter.Button(root, text="OK", fg="black", command=root.quit).pack()
-        root.mainloop()
+    return data dictionary like:
+    {'y': '5.0', 'x': '100', 'z': 'save'}
+    """
+    root = tkinter.Tk()
+    root.title(title)
 
-        result = {}
-        for (entry, data) in zip(entries, dataList):
-            result[data] = entry.get()
+    label = tkinter.Label(root, text=msg)
+    label.pack()
 
-        root.destroy()
-        print(result)
-        return result
+    entries = []
+    for item in dataList:
+        tkinter.Label(root, text=item).pack()
+        entry = tkinter.Entry(root)
+        entry.pack()
+        entries.append(entry)
+
+    # print entries
+    tkinter.Button(root, text="OK", fg="black", command=root.quit).pack()
+    root.mainloop()
+
+    result = {}
+    for (entry, data) in zip(entries, dataList):
+        result[data] = entry.get()
+
+    root.destroy()
+    print(result)
+    return result
 
 
 if __name__ == '__main__':

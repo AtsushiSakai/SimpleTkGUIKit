@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from SimpleTkGUIKit.SimpleTkGUIKit import SimpleTkGUIKit
+from SimpleTkGUIKit import SimpleTkGUIKit
 
 print("GetFilePathsWithDialog")
 fileList = SimpleTkGUIKit.GetFilePathsWithDialog()
