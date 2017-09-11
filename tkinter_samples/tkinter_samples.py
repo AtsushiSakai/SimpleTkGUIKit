@@ -94,6 +94,70 @@ def sample6():
     root.mainloop()
 
 
+def sample7():
+    root = tkinter.Tk()
+    CheckVar1 = tkinter.IntVar()
+    CheckVar2 = tkinter.IntVar()
+    C1 = tkinter.Checkbutton(root, text="Music", variable=CheckVar1,
+                             onvalue=1, offvalue=0, height=5,
+                             width=20, )
+    C2 = tkinter.Checkbutton(root, text="Video", variable=CheckVar2,
+                             onvalue=1, offvalue=0, height=5,
+                             width=20)
+    C1.pack()
+    C2.pack()
+    root.mainloop()
+
+
+def sample8():
+    root = tkinter.Tk()
+    L1 = tkinter.Label(root, text="Email")
+    L1.pack(side=tkinter.LEFT)
+    E1 = tkinter.Entry(root, bd=1)
+    E1.pack(side=tkinter.RIGHT)
+    root.mainloop()
+
+
+def sample9():
+    root = tkinter.Tk()
+    root.title("Frame")
+    frame = tkinter.Frame(root)
+    frame.pack()
+
+    bottomframe = tkinter.Frame(root)
+    bottomframe.pack(side=tkinter.BOTTOM)
+
+    redbutton = tkinter.Button(frame, text="1")
+    redbutton.pack(side=tkinter.LEFT)
+
+    greenbutton = tkinter.Button(frame, text="2")
+    greenbutton.pack(side=tkinter.LEFT)
+
+    bluebutton = tkinter.Button(frame, text="3")
+    bluebutton.pack(side=tkinter.LEFT)
+
+    blackbutton = tkinter.Button(bottomframe, text="Go")
+    blackbutton.pack(side=tkinter.BOTTOM)
+
+    root.mainloop()
+
+
+def sample10():
+    root = tkinter.Tk()
+    root.title("Listbox")
+
+    Lb1 = tkinter.Listbox(root, selectmode=tkinter.MULTIPLE)
+    Lb1.insert(1, "TOKYO")
+    Lb1.insert(2, "KYOTO")
+    Lb1.insert(3, "OSAKA")
+    Lb1.insert(4, "GUNMA")
+    Lb1.insert(5, "GIFU")
+    Lb1.insert(6, "EHIME")
+    Lb1.pack()
+
+    root.mainloop()
+
+
 def main():
     print(__file__ + " start!!")
     #  sample1()
@@ -101,7 +165,11 @@ def main():
     #  sample3()
     #  sample4()
     #  sample5()
-    sample6()
+    #  sample6()
+    #  sample7()
+    #  sample8()
+    #  sample9()
+    sample10()
 
 
 if __name__ == '__main__':
