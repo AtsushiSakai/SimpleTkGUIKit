@@ -41,7 +41,8 @@ def sample3():
             self.hi_there["command"] = self.say_hi
             self.hi_there.pack(side="top")
 
-            self.quit = tkinter.Button(self, text="QUIT", command=root.destroy)
+            self.quit = tkinter.Button(
+                self, text="QUIT", command=self.master.destroy)
             self.quit.pack(side="bottom")
 
         def say_hi(self):
@@ -158,18 +159,180 @@ def sample10():
     root.mainloop()
 
 
+def sample11():
+    root = tkinter.Tk()
+    root.title("check button")
+    root.geometry("300x300")
+    mb = tkinter.Menubutton(root, text="Subjects", relief=tkinter.RAISED)
+    mb.grid()
+    mb.menu = tkinter.Menu(mb, tearoff=0)
+    mb["menu"] = mb.menu
+
+    Var1 = tkinter.IntVar()
+    Var2 = tkinter.IntVar()
+    Var3 = tkinter.IntVar()
+
+    mb.menu.add_checkbutton(label="Math", variable=Var1)
+    mb.menu.add_checkbutton(label="English", variable=Var2)
+    mb.menu.add_checkbutton(label="Physics", variable=Var3)
+
+    mb.pack()
+    root.mainloop()
+
+
+def sample12():
+    def donothing():
+        filewin = tkinter.Toplevel(root)
+        button = tkinter.Button(filewin, text="Do nothing button")
+        button.pack()
+
+    root = tkinter.Tk()
+    menubar = tkinter.Menu(root)
+    filemenu = tkinter.Menu(menubar, tearoff=0)
+    filemenu.add_command(label="New", command=donothing)
+    filemenu.add_command(label="Open", command=donothing)
+    filemenu.add_command(label="Save", command=donothing)
+    filemenu.add_command(label="Save as...", command=donothing)
+    filemenu.add_command(label="Close", command=donothing)
+
+    filemenu.add_separator()
+
+    filemenu.add_command(label="Exit", command=root.quit)
+    menubar.add_cascade(label="File", menu=filemenu)
+    editmenu = tkinter.Menu(menubar, tearoff=0)
+    editmenu.add_command(label="Undo", command=donothing)
+
+    editmenu.add_separator()
+
+    editmenu.add_command(label="Cut", command=donothing)
+    editmenu.add_command(label="Copy", command=donothing)
+    editmenu.add_command(label="Paste", command=donothing)
+    editmenu.add_command(label="Delete", command=donothing)
+    editmenu.add_command(label="Select All", command=donothing)
+
+    menubar.add_cascade(label="Edit", menu=editmenu)
+    helpmenu = tkinter.Menu(menubar, tearoff=0)
+    helpmenu.add_command(label="Help Index", command=donothing)
+    helpmenu.add_command(label="About...", command=donothing)
+    menubar.add_cascade(label="Help", menu=helpmenu)
+
+    root.config(menu=menubar)
+    root.mainloop()
+
+
+def sample13():
+    root = tkinter.Tk()
+    var = tkinter.StringVar()
+    label = tkinter.Message(root, textvariable=var, relief=tkinter.RAISED)
+    var.set("Hey!? How are you doing?")
+    label.pack()
+    root.mainloop()
+
+
+def sample14():
+
+    def sel():
+        selection = "Value = " + str(var.get())
+        label.config(text=selection)
+
+    root = tkinter.Tk()
+    root.title("Scale")
+    var = tkinter.DoubleVar()
+    scale = tkinter.Scale(root, variable=var)
+    scale.pack(anchor=tkinter.CENTER)
+
+    button = tkinter.Button(root, text="Get Scale Value", command=sel)
+    button.pack(anchor=tkinter.CENTER)
+
+    label = tkinter.Label(root)
+    label.pack()
+
+    root.mainloop()
+
+
+def sample15():
+
+    root = tkinter.Tk()
+
+    labelframe = tkinter.LabelFrame(root, text="This is a left LabelFrame")
+    labelframe.pack(side=tkinter.LEFT, fill="both", expand="yes")
+
+    left = tkinter.Label(labelframe, text="Inside the left LabelFrame")
+    left.pack()
+
+    labelframe = tkinter.LabelFrame(root, text="This is a right LabelFrame")
+    labelframe.pack(side=tkinter.RIGHT, fill="both", expand="yes")
+
+    right = tkinter.Label(labelframe, text="Inside the right LabelFrame")
+    right.pack()
+
+    root.mainloop()
+
+
+def sample16():
+    from tkinter import messagebox
+
+    top = tkinter.Tk()
+    top.title("Message box")
+
+    def hello_info():
+        messagebox.showinfo("Say Hello", "Hello info")
+
+    def hello_warning():
+        messagebox.showwarning("Say Hello", "Hello warning")
+
+    def hello_error():
+        messagebox.showerror("Say Hello", "Hello error")
+
+    def hello_question():
+        messagebox.askquestion("Say Hello", "Hello question")
+
+    def hello_cancel():
+        messagebox.askokcancel("Say Hello", "Hello cancel")
+
+    def hello_yesno():
+        messagebox.askyesno("Say Hello", "Hello yesno")
+
+    def hello_retrycancel():
+        messagebox.askretrycancel("Say Hello", "Hello retrycancel")
+
+    B1 = tkinter.Button(top, text="Hello info", command=hello_info)
+    B1.pack()
+    B2 = tkinter.Button(top, text="Hello warning", command=hello_warning)
+    B2.pack()
+    B3 = tkinter.Button(top, text="Hello error", command=hello_error)
+    B3.pack()
+    B4 = tkinter.Button(top, text="Hello question", command=hello_question)
+    B4.pack()
+    B5 = tkinter.Button(top, text="Hello cancel", command=hello_cancel)
+    B5.pack()
+    B6 = tkinter.Button(top, text="Hello yesno", command=hello_yesno)
+    B6.pack()
+    B7 = tkinter.Button(top, text="Hello retrycancel",
+                        command=hello_retrycancel)
+    B7.pack()
+
+    top.mainloop()
+
+
 def main():
     print(__file__ + " start!!")
     #  sample1()
     #  sample2()
-    #  sample3()
+    sample3()
     #  sample4()
     #  sample5()
     #  sample6()
     #  sample7()
     #  sample8()
     #  sample9()
-    sample10()
+    #  sample10()
+    #  sample11()
+    #  sample12()
+    #  sample13()
+    #  sample14()
+    #  sample15()
+    #  sample16()
 
 
 if __name__ == '__main__':
