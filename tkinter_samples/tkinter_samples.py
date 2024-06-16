@@ -4,6 +4,7 @@ tkinter sample
 author: Atsushi Sakai
 """
 import tkinter
+from idlelib.tooltip import Hovertip, OnHoverTooltipBase
 
 
 def sample1():
@@ -315,24 +316,60 @@ def sample16():
     top.mainloop()
 
 
+class MyHovertip(Hovertip):
+    def showcontents(self):
+        label = tkinter.Label(self.tipwindow, text=self.text, justify=tkinter.LEFT,
+                      foreground="black", background="#ffffe0", relief=tkinter.SOLID, borderwidth=1)
+        label.pack()
+
+
+def sample17():
+    root = tkinter.Tk()
+    L1 = tkinter.Label(root, text="Email")
+    L1.pack(side=tkinter.LEFT)
+    E1 = tkinter.Entry(root, bd=1)
+    Hovertip(E1, text="Please enter your email address.")
+    E1.pack(side=tkinter.RIGHT)
+    root.mainloop()
+
+
+class MyHovertip(Hovertip):
+    def showcontents(self):
+        label = tkinter.Label(self.tipwindow, text=self.text, justify=tkinter.LEFT,
+                      foreground="black", background="#ffffe0", relief=tkinter.SOLID, borderwidth=1)
+        label.pack()
+
+
+def sample18():
+    root = tkinter.Tk()
+    L1 = tkinter.Label(root, text="Email")
+    L1.pack(side=tkinter.LEFT)
+    E1 = tkinter.Entry(root, bd=1)
+    MyHovertip(E1, text="Please enter your email address.")
+    E1.pack(side=tkinter.RIGHT)
+    root.mainloop()
+
+
 def main():
     print(__file__ + " start!!")
-    #  sample1()
-    #  sample2()
-    sample3()
-    #  sample4()
-    #  sample5()
-    #  sample6()
-    #  sample7()
-    #  sample8()
-    #  sample9()
-    #  sample10()
-    #  sample11()
-    #  sample12()
-    #  sample13()
-    #  sample14()
-    #  sample15()
-    #  sample16()
+    #sample1()
+    #sample2()
+    # sample3()
+    #sample4()
+    #sample5()
+    #sample6()
+    #sample7()
+    #sample8()
+    #sample9()
+    #sample10()
+    #sample11()
+    #sample12()
+    #sample13()
+    #sample14()
+    #sample15()
+    #sample16()
+    # sample17()
+    sample18()
 
 
 if __name__ == '__main__':
